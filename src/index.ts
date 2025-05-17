@@ -1,5 +1,4 @@
 import express from "express";
-
 import { generateHandler, verifyHandler } from "./handlers";
 
 const app = express();

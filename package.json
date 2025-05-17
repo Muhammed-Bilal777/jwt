@@ -2,9 +2,14 @@
   "name": "jwtm",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "tsx watch src/index.ts"
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "build-dev": "node dist/index.js",
+    "token": "tsx src/token/index.ts",
+    "verify": "tsx src/token/verifyToken.ts"
   },
   "keywords": [],
   "author": "",
