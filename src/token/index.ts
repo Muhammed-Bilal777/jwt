@@ -1,7 +1,10 @@
 import { generateKeyPair, exportJWK, SignJWT } from "jose";
 import { randomUUID } from "crypto";
-
+import dotenv from "dotenv";
+dotenv.config();
 async function generateRsaJwt() {
+  const audience = process.env.JWT_AUDIENCE || "";
+
   // Step 1: Generate RSA key pair
   const { publicKey, privateKey } = await generateKeyPair("RS256");
 
@@ -13,9 +16,10 @@ async function generateRsaJwt() {
 
   // Step 3: Define JWT payload (claims)
   const payload = {
-    sub: "user12",
-    name: "John Doe",
+    sub: "zopsmart",
+    name: "zopsmart",
     admin: true,
+    azp: "zopsmart-client-id",
   };
 
   // Step 4: Sign the JWT with RS256
@@ -26,8 +30,8 @@ async function generateRsaJwt() {
       kid: publicJwk.kid,
     })
     .setIssuedAt()
-    .setIssuer("my-issuer")
-    .setAudience("my-audience")
+    .setIssuer("zopsmart")
+    .setAudience(audience)
     .setExpirationTime("1m")
     .sign(privateKey);
 
